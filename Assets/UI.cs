@@ -34,7 +34,7 @@ public class UI : MonoBehaviour
 
     private void NewGameCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("PawelLutostanski");
     }
 
     private void SetupContinueHandler()
@@ -48,7 +48,7 @@ public class UI : MonoBehaviour
 
     private void ContinueCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("PawelLutostanski");
     }
 
     private void SetupOptionsHandler()
@@ -62,7 +62,7 @@ public class UI : MonoBehaviour
 
     private void OptionsCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("PawelLutostanski");
     }
 
     private void SetupCreditsHandler()
@@ -76,7 +76,7 @@ public class UI : MonoBehaviour
 
     private void CreditsCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("PawelLutostanski");
     }
 
     private void SetupQuitHandler()
