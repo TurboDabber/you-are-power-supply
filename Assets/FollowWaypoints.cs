@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Waypoint : MonoBehaviour
+public class FollowWaypoints : MonoBehaviour
 {
     // put the points from unity interface
     [SerializeField]
@@ -60,21 +60,26 @@ public class Waypoint : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
+    
         if (wayPointList.Length >= 2)
         {
             // Draws a blue line from this transform to the target
             Gizmos.color = Color.blue;
             for(int i = -1; i<wayPointList.Length-1; i++)
             {
+                
                 if(i==-1)
-                    Gizmos.DrawLine(transform.position, wayPointList[i + 1].position);
+                    if ( (wayPointList[i + 1] != null))
+                        Gizmos.DrawLine(transform.position, wayPointList[i + 1].position);
                 else
-                    Gizmos.DrawLine(wayPointList[i].position, wayPointList[i+1].position);
+                    if (wayPointList[i] != null && (wayPointList[i + 1] != null))
+                        Gizmos.DrawLine(wayPointList[i].position, wayPointList[i+1].position);
             }
         }
         else if (wayPointList.Length == 1)
         {
-            Gizmos.DrawLine(transform.position, wayPointList[0].position);
+            if ((wayPointList[0] != null))
+                Gizmos.DrawLine(transform.position, wayPointList[0].position);
         }
     }
 }

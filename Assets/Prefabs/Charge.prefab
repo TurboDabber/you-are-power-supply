@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2927899574137815256}
   - component: {fileID: 2927899574137815257}
-  - component: {fileID: 2927899574137815258}
+  - component: {fileID: 3002027236013142602}
   m_Layer: 0
   m_Name: Charge
   m_TagString: Untagged
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2927899574137815258
+--- !u!114 &3002027236013142602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2927899574137815259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae454dbb0d3c7414ea76b58f9cd27b5d, type: 3}
+  m_Script: {fileID: 11500000, guid: dc613513328c09046839fb384c07b0df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wayPointList: []
