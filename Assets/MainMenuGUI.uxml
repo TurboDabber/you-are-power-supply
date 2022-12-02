@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/new.uss?fileID=7433441132597879392&amp;guid=9f5f1f4d3dd0d65478c4b1708526a8d0&amp;type=3#new" />
+    <ui:VisualElement style="height: 455px; width: 350px; align-items: center; justify-content: space-around; flex-direction: row;">
+        <ui:VisualElement style="height: 104px; width: 222px;">
+            <ui:Button text="New Game" display-tooltip-when-elided="true" name="ButtonNewGame" />
+            <ui:Button text="Continue" display-tooltip-when-elided="true" name="ButtonQuit" />
+            <ui:Button text="Options" display-tooltip-when-elided="true" name="ButtonOptions" />
+            <ui:Button text="Credits" display-tooltip-when-elided="true" name="ButtonCredits" />
+            <ui:Button text="Quit" display-tooltip-when-elided="true" name="ButtonQuit" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
