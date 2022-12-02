@@ -11,11 +11,16 @@ public class UI : MonoBehaviour
     private void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
+        SetupButtonHandlers();
+    }
 
-        Button buttonContinue = root.Q<Button>("ButtonContinue");
-        Button buttonOptions = root.Q<Button>("ButtonOptions");
-        Button buttonCredits = root.Q<Button>("ButtonCredits");
-        Button buttonQuit = root.Q<Button>("ButtonQuit");
+    private void SetupButtonHandlers()
+    {
+        SetupNewGameHandler();
+        SetupContinueHandler();
+        SetupOptionsHandler();
+        SetupCreditsHandler();
+        SetupQuitHandler();
     }
 
     private void SetupNewGameHandler()
@@ -30,5 +35,62 @@ public class UI : MonoBehaviour
     private void NewGameCallback(ClickEvent evt)
     {
         SceneManager.LoadScene("");
+    }
+
+    private void SetupContinueHandler()
+    {
+        Button buttonContinue = root.Q<Button>("ButtonContinue");
+        if (buttonContinue != null)
+        {
+            buttonContinue.RegisterCallback<ClickEvent>(ContinueCallback);
+        }
+    }
+
+    private void ContinueCallback(ClickEvent evt)
+    {
+        SceneManager.LoadScene("");
+    }
+
+    private void SetupOptionsHandler()
+    {
+        Button buttonOptions = root.Q<Button>("ButtonOptions");
+        if (buttonOptions != null)
+        {
+            buttonOptions.RegisterCallback<ClickEvent>(OptionsCallback);
+        }
+    }
+
+    private void OptionsCallback(ClickEvent evt)
+    {
+        SceneManager.LoadScene("");
+    }
+
+    private void SetupCreditsHandler()
+    {
+        Button buttonCredits = root.Q<Button>("ButtonCredit");
+        if (buttonCredits != null)
+        {
+            buttonCredits.RegisterCallback<ClickEvent>(CreditsCallback);
+        }
+    }
+
+    private void CreditsCallback(ClickEvent evt)
+    {
+        SceneManager.LoadScene("");
+    }
+
+    private void SetupQuitHandler()
+    {
+        Button buttonQuit = root.Q<Button>("ButtonQuit");
+        if (buttonQuit != null)
+        {
+            buttonQuit.RegisterCallback<ClickEvent>(QuitCallback);
+        }
+    }
+
+    private void QuitCallback(ClickEvent evt)
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 }
