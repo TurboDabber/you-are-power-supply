@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Waypoint : MonoBehaviour
 {
     // put the points from unity interface
-    public Transform[] wayPointList;
+    [SerializeField]
+    Transform[] wayPointList;
     public int currentWayPoint = 0;
     Transform targetWayPoint;
-    public float speed = 0.2f;
+    float speed = 0f;
+    [SerializeField]
+    float speedAfterRelease = 5f;
+    [SerializeField]
+    string inputName;
+
     // Use this for initialization
     void Start()
     {
@@ -24,6 +32,11 @@ public class Waypoint : MonoBehaviour
             if (targetWayPoint == null)
                 targetWayPoint = wayPointList[currentWayPoint];
             walk();
+        }
+
+        if(Input.GetButtonDown(inputName))
+        {
+            speed = speedAfterRelease;
         }
     }
 
@@ -42,6 +55,26 @@ public class Waypoint : MonoBehaviour
                 currentWayPoint++;
                 targetWayPoint = wayPointList[currentWayPoint];
             }
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (wayPointList.Length >= 2)
+        {
+            // Draws a blue line from this transform to the target
+            Gizmos.color = Color.blue;
+            for(int i = -1; i<wayPointList.Length-1; i++)
+            {
+                if(i==-1)
+                    Gizmos.DrawLine(transform.position, wayPointList[i + 1].position);
+                else
+                    Gizmos.DrawLine(wayPointList[i].position, wayPointList[i+1].position);
+            }
+        }
+        else if (wayPointList.Length == 1)
+        {
+            Gizmos.DrawLine(transform.position, wayPointList[0].position);
         }
     }
 }
