@@ -64,7 +64,7 @@ public class ChargeDistributor : MonoBehaviour
     {
         while (true)
         {
-            if(availableCharges <= maxCharges)
+            if(availableCharges < maxCharges)
                 availableCharges++;
             displayChargeNumber.Invoke(availableCharges);
             yield return new WaitForSeconds(chargeRefillTime);

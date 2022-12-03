@@ -27,7 +27,6 @@ public class ChargeDisplayer : MonoBehaviour
             chargeSlotRectTransform.gameObject.SetActive(true);
             chargeSlotRectTransform.anchoredPosition += new Vector2(i * width, 0);
         }
-        GameObject.Instantiate(chargeTemplate);
     }
 
     void Clean()
