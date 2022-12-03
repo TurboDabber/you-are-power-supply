@@ -25,6 +25,7 @@ public class LightABulb : MonoBehaviour
     [SerializeField]
     Sprite failBulb;
     int _charge;
+    string message;
     void Start()
     {
         currentBulb = GetComponent<SpriteRenderer>();
@@ -87,6 +88,7 @@ public class LightABulb : MonoBehaviour
             yield return new WaitForSeconds(0.04f);
         }
         currentBulb.sprite = winBulb;
+        yield return new WaitForSeconds(1.5f);
         modal.GetComponent<TestScript>().message = "You WON!";
         Instantiate(modal, transform.position, Quaternion.identity);
     }
@@ -100,7 +102,8 @@ public class LightABulb : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         LightAmbient.intensity = 0.03f;
-        modal.GetComponent<TestScript>().message = "You failed too low charge!" + _charge.ToString() + " out of " + winElectronsCondition + ".";
+        yield return new WaitForSeconds(1.5f);
+        modal.GetComponent<TestScript>().message = "You failed, too low charge!\nWas " + _charge.ToString() + " out of " + winElectronsCondition + ".";
         Instantiate(modal, transform.position, Quaternion.identity);
         //TO DO ADD fail EVENT!
     }
@@ -123,7 +126,8 @@ public class LightABulb : MonoBehaviour
 
         children.ForEach(child => child.SetActive(true));
         //Instantiate(modal, transform.position, Quaternion.identity);
-        modal.GetComponent<TestScript>().message = "You failed too high charge!" + _charge.ToString() + " should be " + winElectronsCondition + ".";
+        yield return new WaitForSeconds(1.5f);
+        modal.GetComponent<TestScript>().message = "You failed, too high charge!\nWas " + _charge.ToString() + ". Should be " + winElectronsCondition + ".";
         Instantiate(modal, transform.position, Quaternion.identity);
     }
 }
