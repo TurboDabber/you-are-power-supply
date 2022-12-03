@@ -5,7 +5,6 @@ public class LevelSelectController : MonoBehaviour
     void Start()
     {
         GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
-        gameObject.SetActive(false);
         OnGameStateChanged(GameStateManager.Instance.CurrentGameState);
     }
 

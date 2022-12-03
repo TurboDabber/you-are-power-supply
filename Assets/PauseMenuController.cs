@@ -6,7 +6,6 @@ public class PauseMenuController : MonoBehaviour
     void Awake()
     {
         GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
-        gameObject.SetActive(false);
         OnGameStateChanged(GameStateManager.Instance.CurrentGameState);
     }
 
