@@ -346,7 +346,7 @@ MonoBehaviour:
   - {x: 0.049120225, y: -0.08988987, z: 0}
   m_ShapePathHash: -1629596186
   m_Mesh: {fileID: 0}
-  m_InstanceId: 90712
+  m_InstanceId: 149504
 --- !u!114 &3746260920367098704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   LightAmbient: {fileID: 3746260918861653641}
   winElectronsCondition: 2
   winBulb: {fileID: 21300000, guid: 901d883404091ab4f836124395c05ae6, type: 3}
-  failBulb: {fileID: 21300000, guid: 44a5e45524efc3b43a0a53ece802930b, type: 3}
+  failBulb: {fileID: 21300000, guid: 6f74e88f3ceb8f542a112a3b38ea4861, type: 3}
 --- !u!58 &3746260920367098710
 CircleCollider2D:
   m_ObjectHideFlags: 0
