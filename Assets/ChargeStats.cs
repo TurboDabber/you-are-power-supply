@@ -15,12 +15,14 @@ public class ChargeStats : MonoBehaviour
     int charge;
     int layerCharge;
     int layerAmplifier;
+    int layerBulb;
     bool isDisabled = false;
 
     void Start()
     {
         layerCharge = LayerMask.NameToLayer("Charge");
         layerAmplifier = LayerMask.NameToLayer("Amplifier");
+        layerBulb = LayerMask.NameToLayer("Bulb");
         charge = 1;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,6 +52,13 @@ public class ChargeStats : MonoBehaviour
             charge *= 2;
             ChangeIntensity();
             _event.Invoke(charge);
+        }
+
+        if (collision.gameObject.layer == layerBulb && collision.gameObject.TryGetComponent<LightABulb>(out var lightABulb))
+        {
+            chargeLight.intensity = 0;
+            lightABulb.SwitchOnLight(charge);
+            gameObject.SetActive(false);
         }
     }
 
