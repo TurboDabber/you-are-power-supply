@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2927899574137815256}
   - component: {fileID: 2927899574137815257}
   - component: {fileID: 3002027236013142602}
+  - component: {fileID: 4992928479834618523}
   m_Layer: 0
   m_Name: Charge
   m_TagString: Untagged
@@ -102,6 +103,18 @@ MonoBehaviour:
   currentWayPoint: 0
   speedAfterRelease: 5
   inputName: 
+--- !u!114 &4992928479834618523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2927899574137815259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd5b6ed6a90d4064b8d4a2c0c6ca6a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6450969583484481551
 GameObject:
   m_ObjectHideFlags: 0

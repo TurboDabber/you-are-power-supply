@@ -11,11 +11,10 @@ public class FollowWaypoints : MonoBehaviour
     Transform[] wayPointList;
     public int currentWayPoint = 0;
     Transform targetWayPoint;
-    float speed = 0f;
     [SerializeField]
     float speedAfterRelease = 5f;
     [SerializeField]
-    string inputName;
+
 
     // Use this for initialization
     void Start()
@@ -33,11 +32,6 @@ public class FollowWaypoints : MonoBehaviour
                 targetWayPoint = wayPointList[currentWayPoint];
             walk();
         }
-
-        if(Input.GetButtonDown(inputName))
-        {
-            speed = speedAfterRelease;
-        }
     }
 
     void walk()
@@ -46,7 +40,7 @@ public class FollowWaypoints : MonoBehaviour
         //transform.forward = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
 
         // move towards the target
-        transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speedAfterRelease * Time.deltaTime);
 
         if (transform.position == targetWayPoint.position)
         {
@@ -60,20 +54,22 @@ public class FollowWaypoints : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-    
         if (wayPointList.Length >= 2)
         {
             // Draws a blue line from this transform to the target
             Gizmos.color = Color.blue;
             for(int i = -1; i<wayPointList.Length-1; i++)
             {
-                
-                if(i==-1)
-                    if ( (wayPointList[i + 1] != null))
+                if (i == -1)
+                {
+                    if ((wayPointList[i + 1] != null))
                         Gizmos.DrawLine(transform.position, wayPointList[i + 1].position);
+                }
                 else
+                {
                     if (wayPointList[i] != null && (wayPointList[i + 1] != null))
-                        Gizmos.DrawLine(wayPointList[i].position, wayPointList[i+1].position);
+                        Gizmos.DrawLine(wayPointList[i].position, wayPointList[i + 1].position);
+                }
             }
         }
         else if (wayPointList.Length == 1)
