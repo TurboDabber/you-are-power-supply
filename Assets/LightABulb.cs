@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,8 +10,8 @@ using static Unity.VisualScripting.Metadata;
 
 public class LightABulb : MonoBehaviour
 {
-    //[SerializeField]
-    //GameObject modal;
+    [SerializeField]
+    GameObject modal;
     public UnityEvent terminateElectrons;
     [SerializeField]
     Light2D LightOn;
@@ -23,15 +24,18 @@ public class LightABulb : MonoBehaviour
     Sprite winBulb;
     [SerializeField]
     Sprite failBulb;
+    int _charge;
     void Start()
     {
         currentBulb = GetComponent<SpriteRenderer>();
+        StartCoroutine(blick());
     }
 
     // Update is called once per frame
 
     public void SwitchOnLight(int charge)
     {
+        _charge = charge;
         terminateElectrons.Invoke();
         if (winElectronsCondition==charge)
         {
@@ -46,6 +50,33 @@ public class LightABulb : MonoBehaviour
             StartCoroutine(tooLowFail());
         }
     }
+    System.Collections.IEnumerator blick()
+    {
+        LightOn.gameObject.SetActive(true);
+        var temp = LightOn.intensity;
+        while (LightOn.intensity < 0.8f)
+        {
+            LightOn.intensity += 0.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (LightOn.intensity > 0.1f)
+        {
+            LightOn.intensity -= 0.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (LightOn.intensity < 0.8f)
+        {
+            LightOn.intensity += 0.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (LightOn.intensity > temp)
+        {
+            LightOn.intensity -= 0.03f;
+            yield return new WaitForSeconds(0.01f);
+        }
+        LightOn.intensity = temp;
+        LightOn.gameObject.SetActive(false);
+    }
 
     System.Collections.IEnumerator winLight()
     {
@@ -53,10 +84,11 @@ public class LightABulb : MonoBehaviour
         while (LightOn.intensity<0.8f) 
         {
             LightOn.intensity += 0.02f;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.04f);
         }
         currentBulb.sprite = winBulb;
-        //Instantiate(modal, transform.position, Quaternion.identity);
+        modal.GetComponent<TestScript>().message = "You WON!";
+        Instantiate(modal, transform.position, Quaternion.identity);
     }
 
     System.Collections.IEnumerator tooLowFail()
@@ -68,8 +100,8 @@ public class LightABulb : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         LightAmbient.intensity = 0.03f;
-      
-        //Instantiate(modal, transform.position, Quaternion.identity);
+        modal.GetComponent<TestScript>().message = "You failed too low charge!" + _charge.ToString() + " out of " + winElectronsCondition + ".";
+        Instantiate(modal, transform.position, Quaternion.identity);
         //TO DO ADD fail EVENT!
     }
 
@@ -91,6 +123,7 @@ public class LightABulb : MonoBehaviour
 
         children.ForEach(child => child.SetActive(true));
         //Instantiate(modal, transform.position, Quaternion.identity);
-        //TO DO ADD fail EVENT!
+        modal.GetComponent<TestScript>().message = "You failed too high charge!" + _charge.ToString() + " should be " + winElectronsCondition + ".";
+        Instantiate(modal, transform.position, Quaternion.identity);
     }
 }
