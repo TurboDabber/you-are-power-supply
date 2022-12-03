@@ -21,7 +21,7 @@ public class PAUSE_UI : MonoBehaviour
     private void RegisterButtonHandlers()
     {
         RegisterMainMenuHandler();
-        RegisterLevelSelectHandler();
+        RegisterRestartHandler();
         RegisterContinueHandler();
         RegisterOptionsHandler();
         RegisterExitGameHandler();
@@ -30,7 +30,7 @@ public class PAUSE_UI : MonoBehaviour
     private void UnregisterButtonHandlers()
     {
         UnregisterMainMenuHandler();
-        UnregisterLevelSelectHandler();
+        UnregisterRestartHandler();
         UnregisterContinueHandler();
         UnregisterOptionsHandler();
         UnregisterExitGameHandler();
@@ -45,12 +45,12 @@ public class PAUSE_UI : MonoBehaviour
         }
     }
 
-    private void RegisterLevelSelectHandler()
+    private void RegisterRestartHandler()
     {
-        Button buttonLevelSelect = root.Q<Button>("ButtonLevelSelect");
-        if (buttonLevelSelect != null)
+        Button buttonRestart = root.Q<Button>("ButtonRestart");
+        if (buttonRestart != null)
         {
-            buttonLevelSelect.RegisterCallback<ClickEvent>(ContinueCallback);
+            buttonRestart.RegisterCallback<ClickEvent>(RestartCallback);
         }
     }
 
@@ -90,12 +90,12 @@ public class PAUSE_UI : MonoBehaviour
         }
     }
 
-    private void UnregisterLevelSelectHandler()
+    private void UnregisterRestartHandler()
     {
         Button buttonLevelSelect = root.Q<Button>("ButtonLevelSelect");
         if (buttonLevelSelect != null)
         {
-            buttonLevelSelect.UnregisterCallback<ClickEvent>(LevelSelectCallback);
+            buttonLevelSelect.UnregisterCallback<ClickEvent>(RestartCallback);
         }
     }
 
@@ -131,7 +131,7 @@ public class PAUSE_UI : MonoBehaviour
         SceneManager.LoadScene("PawelLutostanski");
     }
 
-    private void LevelSelectCallback(ClickEvent evt)
+    private void RestartCallback(ClickEvent evt)
     {
         SceneManager.LoadScene("PawelLutostanski");
     }
