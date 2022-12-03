@@ -52,7 +52,7 @@ public class FollowWaypoints : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         if (wayPointList.Length >= 2)
         {
@@ -67,7 +67,7 @@ public class FollowWaypoints : MonoBehaviour
                 }
                 else
                 {
-                    if (wayPointList[i] != null && (wayPointList[i + 1] != null))
+                    
                         Gizmos.DrawLine(wayPointList[i].position, wayPointList[i + 1].position);
                 }
             }
