@@ -10,6 +10,7 @@ public class SpawnCharges : MonoBehaviour
     List<GameObject> Charges = new List<GameObject>();
     [SerializeField]
     Light2D spawnerLight;
+    [SerializeField]
     bool hasShoot = false;
 
 

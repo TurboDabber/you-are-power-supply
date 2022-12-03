@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
@@ -13,6 +14,7 @@ public class ChargeStats : MonoBehaviour
     ChargeEvent _event;
     [SerializeField]
     Light2D chargeLight;
+    [SerializeField]
     int charge;
     int layerCharge;
     int layerAmplifier;
@@ -20,14 +22,14 @@ public class ChargeStats : MonoBehaviour
     int layerResistor;
     bool isDisabled = false;
     CircleCollider2D col;
-    void Start()
+    void Awake()
     {
         layerCharge = LayerMask.NameToLayer("Charge");
         layerAmplifier = LayerMask.NameToLayer("Amplifier");
         layerBulb = LayerMask.NameToLayer("Bulb");
         layerResistor = LayerMask.NameToLayer("Resistor");
         col =GetComponent<CircleCollider2D>();
-        charge = 1;
+        StartCoroutine(numberSet());
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -97,6 +99,12 @@ public class ChargeStats : MonoBehaviour
             
         }
 
+    }
+
+    System.Collections.IEnumerator numberSet()
+    {
+        yield return new WaitForSeconds(0.05f);
+        _event.Invoke(charge);
     }
 
     void ChangeIntensity()
