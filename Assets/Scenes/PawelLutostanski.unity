@@ -1022,6 +1022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChargeObject: {fileID: 630754910}
+  spawnerLight: {fileID: 6017945598551070760}
 --- !u!114 &122353398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4684,6 +4685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChargeObject: {fileID: 2137647628}
+  spawnerLight: {fileID: 1166731150}
 --- !u!114 &451209909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8249,6 +8251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChargeObject: {fileID: 365015593}
+  spawnerLight: {fileID: 1977344459}
 --- !u!114 &804441744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14869,7 +14872,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.19
+  m_Intensity: 0.02
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -22102,6 +22105,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5990955847268823819, guid: c069ec1605c4fa447ae5ba6f97f6fdbf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5990955848476280946, guid: c069ec1605c4fa447ae5ba6f97f6fdbf, type: 3}
       propertyPath: m_Pivot.x
       value: 0

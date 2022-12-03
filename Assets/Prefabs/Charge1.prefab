@@ -138,6 +138,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  chargeLight: {fileID: 6156500385327682862}
 --- !u!58 &6156500384268118220
 CircleCollider2D:
   m_ObjectHideFlags: 0
