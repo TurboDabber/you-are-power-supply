@@ -3,32 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 using static Unity.VisualScripting.Metadata;
 
 public class LightABulb : MonoBehaviour
 {
+    public UnityEvent terminateElectrons;
     [SerializeField]
     Light2D LightOn;
     [SerializeField]
     Light2D LightAmbient;
     [SerializeField]
     int winElectronsCondition;
-    Sprite currentBulb;
+    SpriteRenderer currentBulb;
     [SerializeField]
     Sprite winBulb;
     [SerializeField]
     Sprite failBulb;
     void Start()
     {
-        currentBulb = GetComponent<Sprite>();
+        currentBulb = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
 
     public void SwitchOnLight(int charge)
     {
-        if(winElectronsCondition==charge)
+        terminateElectrons.Invoke();
+        if (winElectronsCondition==charge)
         {
             StartCoroutine(winLight());
         }
@@ -50,7 +53,7 @@ public class LightABulb : MonoBehaviour
             LightOn.intensity += 0.02f;
             yield return new WaitForSeconds(0.1f);
         }
-        currentBulb = winBulb;
+        currentBulb.sprite = winBulb;
         //TO DO ADD WINNING EVENT!
     }
 
@@ -84,13 +87,14 @@ public class LightABulb : MonoBehaviour
         while (LightOn.intensity < 0.90f)
         {
             LightOn.intensity += 0.02f;
+            if (LightOn.intensity > 0.5f)
+                LightOn.color = new Color(LightOn.color.r+0.015f, LightOn.color.g, LightOn.color.b);
             yield return new WaitForSeconds(0.01f);
         }
-        LightOn.intensity = 0.06f;
+        LightOn.intensity = 0.4f;
+        currentBulb.sprite = failBulb;
 
-
-        currentBulb = failBulb;
-
+        children.ForEach(child => child.SetActive(true));
 
         //TO DO ADD fail EVENT!
     }

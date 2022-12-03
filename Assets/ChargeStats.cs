@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,12 +18,13 @@ public class ChargeStats : MonoBehaviour
     int layerAmplifier;
     int layerBulb;
     bool isDisabled = false;
-
+    CircleCollider2D col;
     void Start()
     {
         layerCharge = LayerMask.NameToLayer("Charge");
         layerAmplifier = LayerMask.NameToLayer("Amplifier");
         layerBulb = LayerMask.NameToLayer("Bulb");
+        col=GetComponent<CircleCollider2D>();
         charge = 1;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,6 +62,29 @@ public class ChargeStats : MonoBehaviour
             lightABulb.SwitchOnLight(charge);
             gameObject.SetActive(false);
         }
+    }
+
+    public void Terminate()
+    {
+        col.enabled = false;
+        StartCoroutine(Termination());
+    }
+
+    System.Collections.IEnumerator Termination()
+    {
+        while(true)
+        {
+            if (chargeLight.intensity > 0)
+                chargeLight.intensity -= 0.03f;
+            transform.localScale -= new Vector3(.01f, .01f, 0f);
+            if(transform.localScale.x < 0.02f )
+            {
+                Destroy(gameObject);
+            }
+            yield return new WaitForSeconds(0.01f);
+            
+        }
+
     }
 
     void ChangeIntensity()
