@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="height: 1080px; width: 1920px; align-items: center; justify-content: center;">
+        <ui:Label text="PAUSE " display-tooltip-when-elided="true" style="font-size: 40px;" />
+        <ui:VisualElement name="VisualElement" style="align-items: auto; justify-content: center; width: 40%; height: 40%;">
+            <ui:Button text="MAIN MENU" display-tooltip-when-elided="true" name="buttonMainMenu" style="width: 100%; height: 20%; font-size: 40px;" />
+            <ui:Button text="CONTINUE" display-tooltip-when-elided="true" name="buttonContinue" style="width: 100%; height: 20%; font-size: 40px;" />
+            <ui:Button text="LEVEL SELECT" display-tooltip-when-elided="true" name="buttonLevelSelect" style="width: 100%; height: 20%; font-size: 40px;" />
+            <ui:Button text="OPTIONS" display-tooltip-when-elided="true" name="buttonOptions" style="width: 100%; height: 20%; font-size: 40px;" />
+            <ui:Button text="EXIT GAME" display-tooltip-when-elided="true" name="buttonExitGame" style="width: 100%; height: 20%; font-size: 40px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
