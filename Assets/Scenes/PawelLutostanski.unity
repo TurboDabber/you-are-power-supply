@@ -8124,9 +8124,8 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &767676491
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3783143374503746169, guid: 947dad3e025388d43bec37a1fc2c65a8, type: 3}
+  m_PrefabInstance: {fileID: 536112083}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767676490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -18782,24 +18781,21 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1647208204}
-  - component: {fileID: 1647208206}
-  - component: {fileID: 1647208205}
-  - component: {fileID: 1647208207}
+  - component: {fileID: 1684393248}
   m_Layer: 0
-  m_Name: Spawner2
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1647208204
+--- !u!4 &1684393248
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1647208203}
+  m_GameObject: {fileID: 1684393247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.016, y: -3.69, z: 0.07202743}
   m_LocalScale: {x: 2, y: 2, z: 1}
