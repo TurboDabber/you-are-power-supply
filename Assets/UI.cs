@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
@@ -11,19 +9,33 @@ public class UI : MonoBehaviour
     private void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
-        SetupButtonHandlers();
+        RegisterButtonHandlers();
     }
 
-    private void SetupButtonHandlers()
+    private void OnDestroy()
     {
-        SetupNewGameHandler();
-        SetupContinueHandler();
-        SetupOptionsHandler();
-        SetupCreditsHandler();
-        SetupQuitHandler();
+        UnregisterButtonHandlers();
     }
 
-    private void SetupNewGameHandler()
+    private void RegisterButtonHandlers()
+    {
+        RegisterNewGameHandler();
+        RegisterContinueHandler();
+        RegisterOptionsHandler();
+        RegisterCreditsHandler();
+        RegisterQuitHandler();
+    }
+
+    private void UnregisterButtonHandlers()
+    {
+        UnregisterNewGameHandler();
+        UnregisterContinueHandler();
+        UnregisterOptionsHandler();
+        UnregisterCreditsHandler();
+        UnregisterQuitHandler();
+    }
+
+    private void RegisterNewGameHandler()
     {
         Button buttonNewGame = root.Q<Button>("ButtonNewGame");
         if (buttonNewGame != null)
@@ -32,12 +44,7 @@ public class UI : MonoBehaviour
         }
     }
 
-    private void NewGameCallback(ClickEvent evt)
-    {
-        SceneManager.LoadScene("PawelLutostanski");
-    }
-
-    private void SetupContinueHandler()
+    private void RegisterContinueHandler()
     {
         Button buttonContinue = root.Q<Button>("ButtonContinue");
         if (buttonContinue != null)
@@ -46,12 +53,7 @@ public class UI : MonoBehaviour
         }
     }
 
-    private void ContinueCallback(ClickEvent evt)
-    {
-        SceneManager.LoadScene("PawelLutostanski");
-    }
-
-    private void SetupOptionsHandler()
+    private void RegisterOptionsHandler()
     {
         Button buttonOptions = root.Q<Button>("ButtonOptions");
         if (buttonOptions != null)
@@ -60,12 +62,7 @@ public class UI : MonoBehaviour
         }
     }
 
-    private void OptionsCallback(ClickEvent evt)
-    {
-        SceneManager.LoadScene("PawelLutostanski");
-    }
-
-    private void SetupCreditsHandler()
+    private void RegisterCreditsHandler()
     {
         Button buttonCredits = root.Q<Button>("ButtonCredit");
         if (buttonCredits != null)
@@ -74,18 +71,78 @@ public class UI : MonoBehaviour
         }
     }
 
-    private void CreditsCallback(ClickEvent evt)
-    {
-        SceneManager.LoadScene("PawelLutostanski");
-    }
-
-    private void SetupQuitHandler()
+    private void RegisterQuitHandler()
     {
         Button buttonQuit = root.Q<Button>("ButtonQuit");
         if (buttonQuit != null)
         {
             buttonQuit.RegisterCallback<ClickEvent>(QuitCallback);
         }
+    }
+
+    private void UnregisterNewGameHandler()
+    {
+        Button buttonNewGame = root.Q<Button>("ButtonNewGame");
+        if (buttonNewGame != null)
+        {
+            buttonNewGame.UnregisterCallback<ClickEvent>(NewGameCallback);
+        }
+    }
+
+    private void UnregisterContinueHandler()
+    {
+        Button buttonContinue = root.Q<Button>("ButtonContinue");
+        if (buttonContinue != null)
+        {
+            buttonContinue.UnregisterCallback<ClickEvent>(NewGameCallback);
+        }
+    }
+
+    private void UnregisterOptionsHandler()
+    {
+        Button buttonOptions = root.Q<Button>("ButtonOptions");
+        if (buttonOptions != null)
+        {
+            buttonOptions.UnregisterCallback<ClickEvent>(NewGameCallback);
+        }
+    }
+
+    private void UnregisterCreditsHandler()
+    {
+        Button buttonCredits = root.Q<Button>("ButtonCredits");
+        if (buttonCredits != null)
+        {
+            buttonCredits.UnregisterCallback<ClickEvent>(NewGameCallback);
+        }
+    }
+
+    private void UnregisterQuitHandler()
+    {
+        Button buttonQuit = root.Q<Button>("ButtonQuit");
+        if (buttonQuit != null)
+        {
+            buttonQuit.UnregisterCallback<ClickEvent>(NewGameCallback);
+        }
+    }
+
+    private void NewGameCallback(ClickEvent evt)
+    {
+        SceneManager.LoadScene("PawelLutostanski");
+    }
+
+    private void ContinueCallback(ClickEvent evt)
+    {
+        SceneManager.LoadScene("PawelLutostanski");
+    }
+
+    private void OptionsCallback(ClickEvent evt)
+    {
+        SceneManager.LoadScene("PawelLutostanski");
+    }
+
+    private void CreditsCallback(ClickEvent evt)
+    {
+        SceneManager.LoadScene("PawelLutostanski");
     }
 
     private void QuitCallback(ClickEvent evt)
