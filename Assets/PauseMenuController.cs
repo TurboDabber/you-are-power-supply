@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseMenuController : MonoBehaviour
 {
-    public GameObject pauseMenuUI;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -22,15 +18,5 @@ public class PauseMenuController : MonoBehaviour
     private void OnGameStateChanged(GameState newGameState)
     {
         gameObject.SetActive(newGameState == GameState.Paused);
-
-        if (GameStateManager.Instance.CurrentGameState == GameState.Paused)
-        {
-            pauseMenuUI.SetActive(true);
-        } 
-        else
-        {
-            pauseMenuUI.SetActive(false);
-        }
-
     }
 }
