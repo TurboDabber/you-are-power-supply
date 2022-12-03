@@ -36,7 +36,7 @@ public class LEVEL_SELECT_UI : MonoBehaviour
 
     private void FirstCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("First");
+        SceneManager.LoadScene("1LEVEL");
     }
 
     private void SetupSecondHandler()
@@ -50,7 +50,7 @@ public class LEVEL_SELECT_UI : MonoBehaviour
 
     private void SecondCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("Second");
+        SceneManager.LoadScene("2LEVEL");
     }
 
     private void SetupThirdHandler()
@@ -64,7 +64,7 @@ public class LEVEL_SELECT_UI : MonoBehaviour
 
     private void ThirdCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("Third");
+        SceneManager.LoadScene("3LEVEL");
     }
 
     private void SetupFourthHandler()
@@ -78,7 +78,7 @@ public class LEVEL_SELECT_UI : MonoBehaviour
 
     private void FourthCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("Fourth");
+        SceneManager.LoadScene("4LEVEL");
     }
 
     private void SetupFifthHandler()
@@ -92,7 +92,7 @@ public class LEVEL_SELECT_UI : MonoBehaviour
 
     private void FifthCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("Fifth");
+        SceneManager.LoadScene("5LEVEL");
     }
 
     private void SetupSixthHandler()
@@ -106,7 +106,7 @@ public class LEVEL_SELECT_UI : MonoBehaviour
 
     private void SixthCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("Sixth");
+        SceneManager.LoadScene("6LEVEL");
     }
 
     private void SetupBackHandler()
@@ -114,12 +114,12 @@ public class LEVEL_SELECT_UI : MonoBehaviour
         Button buttonBack = root.Q<Button>("Back");
         if (buttonBack != null)
         {
-            buttonBack.RegisterCallback<ClickEvent>(SixthCallback);
+            buttonBack.RegisterCallback<ClickEvent>(BackCallback);
         }
     }
 
     private void BackCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("");
+        gameObject.SetActive(false);
     }
 }

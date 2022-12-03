@@ -17,9 +17,7 @@ public class UI : MonoBehaviour
     private void SetupButtonHandlers()
     {
         SetupNewGameHandler();
-        SetupContinueHandler();
-        SetupOptionsHandler();
-        SetupCreditsHandler();
+        SetupLevelSelectHandler();
         SetupQuitHandler();
     }
 
@@ -34,49 +32,22 @@ public class UI : MonoBehaviour
 
     private void NewGameCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("PawelLutostanski");
+        SceneManager.LoadScene("1LEVEL");
     }
 
-    private void SetupContinueHandler()
+    private void SetupLevelSelectHandler()
     {
-        Button buttonContinue = root.Q<Button>("ButtonContinue");
+        Button buttonContinue = root.Q<Button>("ButtonLevelSelect");
         if (buttonContinue != null)
         {
-            buttonContinue.RegisterCallback<ClickEvent>(ContinueCallback);
+            buttonContinue.RegisterCallback<ClickEvent>(LevelSelectCallback);
         }
     }
 
-    private void ContinueCallback(ClickEvent evt)
+    private void LevelSelectCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("PawelLutostanski");
-    }
-
-    private void SetupOptionsHandler()
-    {
-        Button buttonOptions = root.Q<Button>("ButtonOptions");
-        if (buttonOptions != null)
-        {
-            buttonOptions.RegisterCallback<ClickEvent>(OptionsCallback);
-        }
-    }
-
-    private void OptionsCallback(ClickEvent evt)
-    {
-        SceneManager.LoadScene("PawelLutostanski");
-    }
-
-    private void SetupCreditsHandler()
-    {
-        Button buttonCredits = root.Q<Button>("ButtonCredit");
-        if (buttonCredits != null)
-        {
-            buttonCredits.RegisterCallback<ClickEvent>(CreditsCallback);
-        }
-    }
-
-    private void CreditsCallback(ClickEvent evt)
-    {
-        SceneManager.LoadScene("PawelLutostanski");
+        SceneManager.LoadScene("LevelSelect");
+        GameStateManager.Instance.SetState(GameState.LevelSelect);
     }
 
     private void SetupQuitHandler()

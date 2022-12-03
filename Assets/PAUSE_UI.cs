@@ -2,10 +2,25 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-//TODO: ADD RESTART BUTTON ? ASK CREWMATES
-
 public class PAUSE_UI : MonoBehaviour
 {
+    void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+        OnGameStateChanged(GameStateManager.Instance.CurrentGameState);
+    }
+
+    private void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+        UnregisterButtonHandlers();
+    }
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        gameObject.SetActive(newGameState == GameState.Paused);
+    }
+
     private VisualElement root;
     private void OnEnable()
     {
@@ -13,17 +28,12 @@ public class PAUSE_UI : MonoBehaviour
         RegisterButtonHandlers();
     }
 
-    private void OnDestroy()
-    {
-        UnregisterButtonHandlers();
-    }
-
     private void RegisterButtonHandlers()
     {
         RegisterMainMenuHandler();
         RegisterRestartHandler();
         RegisterContinueHandler();
-        RegisterOptionsHandler();
+        RegisterLevelSelectHandler();
         RegisterExitGameHandler();
     }
 
@@ -32,7 +42,7 @@ public class PAUSE_UI : MonoBehaviour
         UnregisterMainMenuHandler();
         UnregisterRestartHandler();
         UnregisterContinueHandler();
-        UnregisterOptionsHandler();
+        UnregisterLevelSelectHandler();
         UnregisterExitGameHandler();
     }
 
@@ -63,12 +73,12 @@ public class PAUSE_UI : MonoBehaviour
         }
     }
 
-    private void RegisterOptionsHandler()
+    private void RegisterLevelSelectHandler()
     {
-        Button buttonOptions = root.Q<Button>("ButtonOptions");
-        if (buttonOptions != null)
+        Button buttonExitGame = root.Q<Button>("ButtonExitGame");
+        if (buttonExitGame != null)
         {
-            buttonOptions.RegisterCallback<ClickEvent>(OptionsCallback);
+            buttonExitGame.RegisterCallback<ClickEvent>(ExitGameCallback);
         }
     }
 
@@ -108,12 +118,12 @@ public class PAUSE_UI : MonoBehaviour
         }
     }
 
-    private void UnregisterOptionsHandler()
+    private void UnregisterLevelSelectHandler()
     {
-        Button buttonOptions = root.Q<Button>("ButtonOptions");
-        if (buttonOptions != null)
+        Button buttonContinue = root.Q<Button>("ButtonLevelSelect");
+        if (buttonContinue != null)
         {
-            buttonOptions.UnregisterCallback<ClickEvent>(OptionsCallback);
+            buttonContinue.UnregisterCallback<ClickEvent>(LevelSelectCallback);
         }
     }
 
@@ -128,22 +138,22 @@ public class PAUSE_UI : MonoBehaviour
 
     private void MainMenuCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("PawelLutostanski");
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void RestartCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("PawelLutostanski");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void ContinueCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("PawelLutostanski");
+        gameObject.SetActive(false);
     }
 
-    private void OptionsCallback(ClickEvent evt)
+    private void LevelSelectCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("PawelLutostanski");
+
     }
 
     private void ExitGameCallback(ClickEvent evt)
