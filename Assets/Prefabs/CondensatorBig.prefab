@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2954623292638628329
+--- !u!1 &6420874334009165535
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2954623292638628324}
-  - component: {fileID: 2954623292638628331}
-  - component: {fileID: 2954623292638628330}
-  m_Layer: 7
-  m_Name: Amplifier
+  - component: {fileID: 6420874334009165505}
+  - component: {fileID: 6420874334009165534}
+  - component: {fileID: 6420874334009165504}
+  m_Layer: 0
+  m_Name: CondensatorBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2954623292638628324
+--- !u!4 &6420874334009165505
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2954623292638628329}
+  m_GameObject: {fileID: 6420874334009165535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.211, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2954623292638628331
+--- !u!212 &6420874334009165534
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2954623292638628329}
+  m_GameObject: {fileID: 6420874334009165535}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,41 +73,58 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: 2c01e02ce7d3f31419161e7ca5bf2a79, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 74a4cd682f9d06a4c8ea987b480f39e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.36, y: 0.24}
+  m_Size: {x: 0.16, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2954623292638628330
-BoxCollider2D:
+--- !u!114 &6420874334009165504
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2954623292638628329}
+  m_GameObject: {fileID: 6420874334009165535}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.02}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.36, y: 0.24}
-    newSize: {x: 0.36, y: 0.24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.19, y: 0.08}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.040092904, y: -0.10019237, z: 0}
+  - {x: -0.0399632, y: -0.09018358, z: 0}
+  - {x: -0.049866475, y: -0.09018358, z: 0}
+  - {x: -0.04994832, y: -0.080362156, z: 0}
+  - {x: -0.059769746, y: -0.08036215, z: 0}
+  - {x: -0.060073353, y: 0.120118774, z: 0}
+  - {x: -0.050090935, y: 0.12028515, z: 0}
+  - {x: -0.050146393, y: 0.12993483, z: 0}
+  - {x: -0.039997604, y: 0.13015665, z: 0}
+  - {x: -0.03972834, y: 0.13982348, z: 0}
+  - {x: 0.040247396, y: 0.1400286, z: 0}
+  - {x: 0.0403903, y: 0.12991956, z: 0}
+  - {x: 0.0500907, y: 0.13010977, z: 0}
+  - {x: 0.0500907, y: 0.120219156, z: 0}
+  - {x: 0.0601715, y: 0.12040937, z: 0}
+  - {x: 0.060312912, y: -0.079786, z: 0}
+  - {x: 0.050239332, y: -0.07978319, z: 0}
+  - {x: 0.050239332, y: -0.08974424, z: 0}
+  - {x: 0.040100403, y: -0.08992211, z: 0}
+  - {x: 0.04018934, y: -0.09979423, z: 0}
+  m_ShapePathHash: -1522349331
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -37800
