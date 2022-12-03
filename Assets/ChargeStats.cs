@@ -17,6 +17,7 @@ public class ChargeStats : MonoBehaviour
     int layerCharge;
     int layerAmplifier;
     int layerBulb;
+    int layerResistor;
     bool isDisabled = false;
     CircleCollider2D col;
     void Start()
@@ -24,7 +25,8 @@ public class ChargeStats : MonoBehaviour
         layerCharge = LayerMask.NameToLayer("Charge");
         layerAmplifier = LayerMask.NameToLayer("Amplifier");
         layerBulb = LayerMask.NameToLayer("Bulb");
-        col=GetComponent<CircleCollider2D>();
+        layerResistor = LayerMask.NameToLayer("Resistor");
+        col =GetComponent<CircleCollider2D>();
         charge = 1;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,16 +49,26 @@ public class ChargeStats : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-
-        if (collision.gameObject.layer == layerAmplifier)
+        else if (collision.gameObject.layer == layerAmplifier && collision.gameObject.TryGetComponent<Amplifier>(out var amplifier))
         {
  
-            charge *= 2;
+            charge *= amplifier.GetMultiplier();
             ChangeIntensity();
             _event.Invoke(charge);
         }
+        else if (collision.gameObject.layer == layerResistor && collision.gameObject.TryGetComponent<Resistor>(out var resistor))
+        {
 
-        if (collision.gameObject.layer == layerBulb && collision.gameObject.TryGetComponent<LightABulb>(out var lightABulb))
+            charge -= resistor.GetDifference();
+            if (charge <= 0)
+            {
+                Terminate();
+                charge = 0;
+            }
+            ChangeIntensity();
+            _event.Invoke(charge);
+        }
+        else if (collision.gameObject.layer == layerBulb && collision.gameObject.TryGetComponent<LightABulb>(out var lightABulb))
         {
             chargeLight.intensity = 0;
             lightABulb.SwitchOnLight(charge);
