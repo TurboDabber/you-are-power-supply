@@ -5,11 +5,12 @@ using UnityEngine;
 public class TestScript : MonoBehaviour
 {
     [SerializeField] private ConfirmationWindow confirmationWindow;
+    public string message;
 
     // Start is called before the first frame update
     void Start()
     {
-        OpenConfirmationWindow("Sure?");
+        OpenConfirmationWindow(message);
     }
 
     private void OpenConfirmationWindow(string message)
