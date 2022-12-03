@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class ChargeStats : MonoBehaviour
 {
-    float size;
+    float charge;
     int layer;
+    bool isDisabled = false;
     void Start()
     {
         layer = LayerMask.NameToLayer("Charge");
-        size = transform.localScale.x;
+        charge = 1;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == layer)
+        if (isDisabled)
         {
-            if(collision.gameObject.TryGetComponent<ChargeStats>(out var otherChargeStats))
+            return;
+        }
+        if (collision.gameObject.layer == layer)
+        {
+            if(collision.gameObject.TryGetComponent<ChargeStats>(out var otherChargeStats) && !otherChargeStats.isDisabled)
             {
-                size +=otherChargeStats.size;
-                transform.localScale = new Vector3(size, size, 0);
+                otherChargeStats.isDisabled = true;
+                charge +=otherChargeStats.charge;
+                //transform.localScale = new Vector3(size, size, 0);
                 Destroy(collision.gameObject);
             }
         }
