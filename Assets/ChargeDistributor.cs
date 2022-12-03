@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-public class StringEvent : UnityEvent<string> { }
+
+[System.Serializable]
+public class IntEvent : UnityEvent<int> { }
 public class ChargeDistributor : MonoBehaviour
 {
     public UnityEvent[] releaseSpawners;
+    public IntEvent displayChargeNumber;
     [SerializeField]
     string inputName1;
     [SerializeField]
@@ -19,11 +22,22 @@ public class ChargeDistributor : MonoBehaviour
     string inputName5;
 
     [SerializeField]
-    int startNumberOfCharges;
-    // Update is called once per frame
+    int availableCharges;
+    [SerializeField]
+    int maxCharges;
+    [SerializeField]
+    float chargeRefillTime;
+
+    private int _i;
+    private void Start()
+    {
+        StartCoroutine(yieldChargeRefilling());
+        displayChargeNumber.Invoke(availableCharges);
+    }
+
     void Update()
     {
-        if (startNumberOfCharges > 0)
+        if (availableCharges > 0)
         {
             if (!string.IsNullOrEmpty(inputName1) && releaseSpawners.Length >= 1 && Input.GetButtonDown(inputName1))
                 InvokeCharge(0);
@@ -41,6 +55,19 @@ public class ChargeDistributor : MonoBehaviour
     void InvokeCharge(int spawnerNumber)
     {
         releaseSpawners[spawnerNumber].Invoke();
-        startNumberOfCharges--;
+        availableCharges--;
+        displayChargeNumber.Invoke(availableCharges);
+    }
+
+    
+    System.Collections.IEnumerator yieldChargeRefilling()
+    {
+        while (true)
+        {
+            if(availableCharges <= maxCharges)
+                availableCharges++;
+            displayChargeNumber.Invoke(availableCharges);
+            yield return new WaitForSeconds(chargeRefillTime);
+        }
     }
 }
