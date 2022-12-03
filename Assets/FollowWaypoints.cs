@@ -54,28 +54,31 @@ public class FollowWaypoints : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (wayPointList.Length >= 2)
+        if (wayPointList?.Length != 0)
         {
-            // Draws a blue line from this transform to the target
-            Gizmos.color = Color.blue;
-            for(int i = -1; i<wayPointList.Length-1; i++)
+            if (wayPointList.Length >= 2)
             {
-                if (i == -1)
+                // Draws a blue line from this transform to the target
+                Gizmos.color = Color.blue;
+                for (int i = -1; i < wayPointList.Length - 1; i++)
                 {
-                    if ((wayPointList[i + 1] != null))
-                        Gizmos.DrawLine(transform.position, wayPointList[i + 1].position);
-                }
-                else
-                {
-                    
+                    if (i == -1 && wayPointList[i+1] != null)
+                    {
+                        if ((wayPointList[i + 1] != null))
+                            Gizmos.DrawLine(transform.position, wayPointList[i + 1].position);
+                    }
+                    else if(wayPointList[i + 1] != null && wayPointList[i] != null)
+                    {
+
                         Gizmos.DrawLine(wayPointList[i].position, wayPointList[i + 1].position);
+                    }
                 }
             }
-        }
-        else if (wayPointList.Length == 1)
-        {
-            if ((wayPointList[0] != null))
-                Gizmos.DrawLine(transform.position, wayPointList[0].position);
+            else if (wayPointList.Length == 1)
+            {
+                if ((wayPointList[0] != null))
+                    Gizmos.DrawLine(transform.position, wayPointList[0].position);
+            }
         }
     }
 }
