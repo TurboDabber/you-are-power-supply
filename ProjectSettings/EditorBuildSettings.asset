@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PawelLutostanski.unity
     guid: 3517d0878ef86e945979efb38f1b42da
+  - enabled: 1
+    path: Assets/Scenes/1LEVEL.unity
+    guid: ab19ab1c8a8e80d418b4bd54b7a93f64
   m_configObjects: {}
