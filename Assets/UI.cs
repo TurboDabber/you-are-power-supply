@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
+
     private VisualElement root;
     private void OnEnable()
     {
@@ -46,7 +47,6 @@ public class UI : MonoBehaviour
 
     private void LevelSelectCallback(ClickEvent evt)
     {
-        SceneManager.LoadScene("LevelSelect");
         GameStateManager.Instance.SetState(GameState.LevelSelect);
     }
 
