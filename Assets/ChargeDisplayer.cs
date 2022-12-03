@@ -21,12 +21,13 @@ public class ChargeDisplayer : MonoBehaviour
     {
         Clean();
         //chargeNumber = charges;
-        for(int i=0; i<charges; i++)
-        {
-            RectTransform chargeSlotRectTransform = Instantiate(chargeTemplate, toClean).GetComponent<RectTransform>();
-            chargeSlotRectTransform.gameObject.SetActive(true);
-            chargeSlotRectTransform.anchoredPosition += new Vector2(i * width, 0);
-        }
+        if(charges>0)
+            for(int i=0; i<charges; i++)
+            {
+                RectTransform chargeSlotRectTransform = Instantiate(chargeTemplate, toClean).GetComponent<RectTransform>();
+                chargeSlotRectTransform.gameObject.SetActive(true);
+                chargeSlotRectTransform.anchoredPosition += new Vector2(i * width, 0);
+            }
     }
 
     void Clean()
