@@ -9,6 +9,8 @@ using static Unity.VisualScripting.Metadata;
 
 public class LightABulb : MonoBehaviour
 {
+    //[SerializeField]
+    //GameObject modal;
     public UnityEvent terminateElectrons;
     [SerializeField]
     Light2D LightOn;
@@ -54,27 +56,20 @@ public class LightABulb : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         currentBulb.sprite = winBulb;
-        //TO DO ADD WINNING EVENT!
+        //Instantiate(modal, transform.position, Quaternion.identity);
     }
 
     System.Collections.IEnumerator tooLowFail()
     {
-        LightOn.gameObject.SetActive(true);
-        while (LightOn.intensity < 0.1f)
-        {
-            LightOn.intensity += 0.005f;
-            yield return new WaitForSeconds(0.8f);
-        }
-        LightOn.enabled = false;
+       
         while (LightAmbient.intensity > 0f)
         {
-            LightAmbient.intensity -= 0.03f;
+            LightAmbient.intensity -= 0.09f;
             yield return new WaitForSeconds(0.1f);
         }
-
-        var children = new List<GameObject>();
-        foreach (Transform child in LightOn.transform) children.Add(child.gameObject);
-        children.ForEach(child => child.SetActive(false));
+        LightAmbient.intensity = 0.03f;
+      
+        //Instantiate(modal, transform.position, Quaternion.identity);
         //TO DO ADD fail EVENT!
     }
 
@@ -95,7 +90,7 @@ public class LightABulb : MonoBehaviour
         currentBulb.sprite = failBulb;
 
         children.ForEach(child => child.SetActive(true));
-
+        //Instantiate(modal, transform.position, Quaternion.identity);
         //TO DO ADD fail EVENT!
     }
 }
