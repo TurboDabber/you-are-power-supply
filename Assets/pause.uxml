@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement style="height: 1080px; width: 1920px; align-items: center; justify-content: center;">
+    <ui:VisualElement style="height: 1080px; width: 1920px; align-items: center; justify-content: space-around;">
         <ui:VisualElement name="VisualElement" style="align-items: auto; justify-content: center; width: 40%; height: 40%;">
             <ui:Label text="PAUSE " display-tooltip-when-elided="true" style="font-size: 40px; -unity-text-align: upper-center; width: 100%;" />
             <ui:Button text="MAIN MENU" display-tooltip-when-elided="true" name="ButtonMainMenu" style="width: 100%; height: 20%; font-size: 40px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />

@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class PauseMenuController : MonoBehaviour
+public class LevelSelectController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
         gameObject.SetActive(false);
@@ -17,6 +16,7 @@ public class PauseMenuController : MonoBehaviour
 
     private void OnGameStateChanged(GameState newGameState)
     {
-        gameObject.SetActive(newGameState == GameState.Paused);
+        Debug.Log("AXWNWQEEWQEWQ");
+        gameObject.SetActive(newGameState == GameState.LevelSelect);
     }
 }
