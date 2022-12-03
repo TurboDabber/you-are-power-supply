@@ -153,7 +153,7 @@ public class PAUSE_UI : MonoBehaviour
 
     private void LevelSelectCallback(ClickEvent evt)
     {
-
+        GameStateManager.Instance.SetState(GameState.LevelSelect);
     }
 
     private void ExitGameCallback(ClickEvent evt)
