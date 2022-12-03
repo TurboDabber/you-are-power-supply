@@ -9,6 +9,7 @@ public class IntEvent : UnityEvent<int> { }
 public class ChargeDistributor : MonoBehaviour
 {
     public UnityEvent[] releaseSpawners;
+    public UnityEvent disableAmplifierDrag;
     public IntEvent displayChargeNumber;
     [SerializeField]
     string inputName1;
@@ -55,6 +56,7 @@ public class ChargeDistributor : MonoBehaviour
     void InvokeCharge(int spawnerNumber)
     {
         releaseSpawners[spawnerNumber].Invoke();
+        disableAmplifierDrag.Invoke();
         availableCharges--;
         displayChargeNumber.Invoke(availableCharges);
     }

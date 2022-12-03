@@ -7,8 +7,10 @@ public class SpawnCharges : MonoBehaviour
 {
     [SerializeField]
     GameObject ChargeObject;
+    List<GameObject> Charges = new List<GameObject>();
     [SerializeField]
     Light2D spawnerLight;
+    [SerializeField]
     bool hasShoot = false;
 
 
@@ -20,8 +22,21 @@ public class SpawnCharges : MonoBehaviour
             var newCharge = GameObject.Instantiate(ChargeObject, transform.position, Quaternion.identity);
             newCharge.transform.SetParent(transform, true);
             newCharge.SetActive(true);
+            Charges.Add(newCharge);
             hasShoot=true;
             spawnerLight.intensity *= 0;
+        }
+    }
+
+    public void TerminateCharges()
+    {
+        hasShoot = true;
+        foreach(var charge in Charges)
+        {
+            if(charge!=null && charge.TryGetComponent<ChargeStats>(out ChargeStats chargeStats))
+            {
+                chargeStats.Terminate();
+            }
         }
     }
 }

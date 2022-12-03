@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
@@ -12,16 +14,22 @@ public class ChargeStats : MonoBehaviour
     ChargeEvent _event;
     [SerializeField]
     Light2D chargeLight;
+    [SerializeField]
     int charge;
     int layerCharge;
     int layerAmplifier;
+    int layerBulb;
+    int layerResistor;
     bool isDisabled = false;
-
-    void Start()
+    CircleCollider2D col;
+    void Awake()
     {
         layerCharge = LayerMask.NameToLayer("Charge");
         layerAmplifier = LayerMask.NameToLayer("Amplifier");
-        charge = 1;
+        layerBulb = LayerMask.NameToLayer("Bulb");
+        layerResistor = LayerMask.NameToLayer("Resistor");
+        col =GetComponent<CircleCollider2D>();
+        StartCoroutine(numberSet());
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,14 +51,60 @@ public class ChargeStats : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-
-        if (collision.gameObject.layer == layerAmplifier)
+        else if (collision.gameObject.layer == layerAmplifier && collision.gameObject.TryGetComponent<Amplifier>(out var amplifier))
         {
  
-            charge *= 2;
+            charge *= amplifier.GetMultiplier();
             ChangeIntensity();
             _event.Invoke(charge);
         }
+        else if (collision.gameObject.layer == layerResistor && collision.gameObject.TryGetComponent<Resistor>(out var resistor))
+        {
+
+            charge -= resistor.GetDifference();
+            if (charge <= 0)
+            {
+                Terminate();
+                charge = 0;
+            }
+            ChangeIntensity();
+            _event.Invoke(charge);
+        }
+        else if (collision.gameObject.layer == layerBulb && collision.gameObject.TryGetComponent<LightABulb>(out var lightABulb))
+        {
+            chargeLight.intensity = 0;
+            lightABulb.SwitchOnLight(charge);
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Terminate()
+    {
+        col.enabled = false;
+        StartCoroutine(Termination());
+    }
+
+    System.Collections.IEnumerator Termination()
+    {
+        while(true)
+        {
+            if (chargeLight.intensity > 0)
+                chargeLight.intensity -= 0.03f;
+            transform.localScale -= new Vector3(.01f, .01f, 0f);
+            if(transform.localScale.x < 0.02f )
+            {
+                Destroy(gameObject);
+            }
+            yield return new WaitForSeconds(0.01f);
+            
+        }
+
+    }
+
+    System.Collections.IEnumerator numberSet()
+    {
+        yield return new WaitForSeconds(0.05f);
+        _event.Invoke(charge);
     }
 
     void ChangeIntensity()
